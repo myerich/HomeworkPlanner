@@ -1,0 +1,32 @@
+service: homework-planner
+
+provider:
+    name: aws
+    runtime: nodejs8.10
+    region: us-west-2
+    environment:
+        DYNAMODB_TABLE: hwUsers-${opt:stage, self:provider.stage}
+
+functions:
+    homeworkPlanner:
+        handler: index.handler
+        events:
+            - alexaSkill: amzn1.ask.skill.53fcbe88-b99b-403e-9936-5ca97dc7658e
+
+resources:
+    Resources:
+        hwUsers:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: ${self:provider.environment.DYNAMODB_TABLE}
+                AttributeDefinitions:
+                    -
+                        AttributeName: userId
+                        AttributeType: S
+                KeySchema:
+                    -
+                        AttributeName: userId
+                        KeyType: HASH
+                ProvisionedThroughput:
+                    ReadCapacityUnits: 1
+                    WriteCapacityUnits: 1

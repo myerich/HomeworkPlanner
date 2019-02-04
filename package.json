@@ -1,0 +1,30 @@
+{
+  "name": "homeworkplanner",
+  "version": "1.0.0",
+  "description": "Alexa Skill for homework and course planning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myerich/HomeworkPlanner.git"
+  },
+  "keywords": [
+    "homework",
+    "planner"
+  ],
+  "author": "Matthew Yerich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myerich/HomeworkPlanner/issues"
+  },
+  "homepage": "https://github.com/myerich/HomeworkPlanner#readme",
+  "dependencies": {
+    "amazon-date-parser": "^0.2.0",
+    "ask-sdk": "^2.3.0",
+    "ask-sdk-core": "^2.3.0",
+    "ask-sdk-dynamodb-persistence-adapter": "^2.3.0",
+    "ask-sdk-model": "^1.11.2"
+  }
+}
