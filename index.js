@@ -1,6 +1,6 @@
 const Alexa = require('ask-sdk');
 const DateParser = require('amazon-date-parser');
-const DynamoDbPersistenceAdapter = require('ask-sdk-dynamodb-persistence-adapter');
+const { DynamoDbPersistenceAdapter } = require('ask-sdk-dynamodb-persistence-adapter');
 
 const config = {
     tableName: process.env.DYNAMODB_TABLE,
@@ -31,7 +31,7 @@ const AddHomeworkIntentHandler = {
     },
     handle(handlerInput) {
         const slots = handlerInput.requestEnvelope.request.intent.slots;
-        const date = new DateParser(slots.Date).startDate;
+        const date = new DateParser(slots.Date.value).startDate;
         const dateString = date.getMonth() + '/' + date.getDate();
 
         const params = {
@@ -97,7 +97,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        console.log(`Error handled: ${error.message}`);
+        console.log(`Error handled: ${error.stack}`);
 
         const errorText = 'Sorry, I can\'t understand the command. Please say again.';
 
